@@ -1,3 +1,4 @@
+//BACKGROUND IMAGE AND AUTHOR/PHOTOGRAPHER
 //Get photo and author from unsplash
 fetch('https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature')
     .then((res) => res.json())
@@ -12,6 +13,7 @@ fetch('https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&que
         document.getElementById('author').textContent = `By:Mohammad Alizade`;
     });
 
+//CRYPTOCURRENCY
 //Get the cryptocurrency data for Dogecoin (image, name, price) from the CoinGecko API
 fetch('https://api.coingecko.com/api/v3/coins/dogecoin')
     .then((res) => {
@@ -33,6 +35,7 @@ fetch('https://api.coingecko.com/api/v3/coins/dogecoin')
     })
     .catch((err) => console.error(err));
 
+// TIME
 //Function to display current time
 function getCurrentTime() {
     const date = new Date();
@@ -41,3 +44,26 @@ function getCurrentTime() {
 
 //Calls getCurrentTime every second so time is updated
 setInterval(getCurrentTime, 1000);
+
+// WEATHER
+// Current location
+navigator.geolocation.getCurrentPosition((position) => {
+    // Get weather for current location from OpenWeatherMap
+    fetch(
+        `https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`
+    )
+        .then((res) => {
+            if (!res.ok) {
+                throw Error('Weather data not available');
+            }
+            return res.json();
+        })
+        .then((data) => {
+            // Display weather icon
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            document.getElementById('weather').innerHTML = `
+                <img src=${iconUrl} />
+            `;
+        })
+        .catch((err) => console.error(err));
+});
