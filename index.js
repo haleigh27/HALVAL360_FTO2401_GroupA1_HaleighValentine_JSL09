@@ -12,7 +12,7 @@ fetch('https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&que
         document.getElementById('author').textContent = `By:Mohammad Alizade`;
     });
 
-//Pull down the cryptocurrency data for dogecoin (image and name) from the CoinGecko API
+//Get the cryptocurrency data for Dogecoin (image, name, price) from the CoinGecko API
 fetch('https://api.coingecko.com/api/v3/coins/dogecoin')
     .then((res) => {
         if (!res.ok) {
@@ -24,6 +24,11 @@ fetch('https://api.coingecko.com/api/v3/coins/dogecoin')
         document.getElementById('crypto-top').innerHTML = `
             <img src=${data.image.small} />
             <span>${data.name}</span>
+        `;
+        document.getElementById('crypto').innerHTML += `
+        <p>🎯: R${data.market_data.current_price.zar}</p>
+        <p>👆: R${data.market_data.high_24h.zar}</p>
+        <p>👇: R${data.market_data.low_24h.zar}</p>
         `;
     })
     .catch((err) => console.error(err));
