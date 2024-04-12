@@ -44,7 +44,7 @@ try {
 //Function to display current time
 function getCurrentTime() {
     const date = new Date();
-    document.getElementById('time').textContent = date.toLocaleTimeString('en-us', { timeStyle: 'short' });
+    document.getElementById('time').textContent = date.toLocaleTimeString('en-za', { timeStyle: 'short' });
 }
 
 //Calls getCurrentTime every second so time is updated
