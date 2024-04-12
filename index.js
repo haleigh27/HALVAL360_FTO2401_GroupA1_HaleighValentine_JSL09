@@ -32,3 +32,12 @@ fetch('https://api.coingecko.com/api/v3/coins/dogecoin')
         `;
     })
     .catch((err) => console.error(err));
+
+//Function to display current time
+function getCurrentTime() {
+    const date = new Date();
+    document.getElementById('time').textContent = date.toLocaleTimeString('en-us', { timeStyle: 'short' });
+}
+
+//Calls getCurrentTime every second so time is updated
+setInterval(getCurrentTime, 1000);
