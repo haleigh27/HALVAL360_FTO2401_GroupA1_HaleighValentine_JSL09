@@ -59,10 +59,13 @@ navigator.geolocation.getCurrentPosition((position) => {
             return res.json();
         })
         .then((data) => {
-            // Display weather icon
+            // Weather icon URL
             const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            //Display weather data in HTML
             document.getElementById('weather').innerHTML = `
                 <img src=${iconUrl} />
+                <p>${Math.round(data.main.temp)}º</p>
+                <p>${data.name}</p>
             `;
         })
         .catch((err) => console.error(err));
